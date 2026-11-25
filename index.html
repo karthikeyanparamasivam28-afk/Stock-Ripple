@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STOCK RIPPLE - Live Tape</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;margin:0;padding:15px}
+h1{text-align:center;color:#00ff88}
+#status{text-align:center;color:#aaa;font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:12px;border-bottom:1px solid #222;text-align:left}
+.up{color:#00ff88}.down{color:#ff4444}
+</style>
+</head>
+<body>
+<h1>⚡ STOCK RIPPLE</h1>
+<p id="status">Fetching market feed...</p>
+<table><thead><tr><th>SYMBOL</th><th>LTP</th><th>CHANGE %</th></tr></thead><tbody id="body"></tbody></table>
+<script>
+async function load(){
+ try{
+  const r = await fetch('nse_data.json?t='+Date.now());
+  const d = await r.json();
+  document.getElementById('status').innerText = 'Last Updated: ' + d.updated + ' | Stocks: ' + d.stocks.length;
+  document.getElementById('body').innerHTML = d.stocks.map(s=>`<tr><td><b>${s.symbol}</b></td><td>₹${s.ltp}</td><td class="${s.chgPct>=0?'up':'down'}">${s.chgPct}%</td></tr>`).join('');
+ }catch(e){ document.getElementById('status').innerText = 'Data not yet ready. Wait 5 mins after Action runs.'; }
+}
+load(); setInterval(load, 30000);
+</script>
+</body>
+</html>
