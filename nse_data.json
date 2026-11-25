@@ -1,0 +1,21 @@
+{
+  "timestamp": 1795601396,
+  "updated": "25 Nov 2026, 10:09 AM IST",
+  "stocks": [
+    {
+      "symbol": "DABUR",
+      "ltp": 430.0,
+      "chgPct": 7.77
+    },
+    {
+      "symbol": "TCS",
+      "ltp": 2517.3,
+      "chgPct": 2.33
+    },
+    {
+      "symbol": "JSWINFRA",
+      "ltp": 357.65,
+      "chgPct": 1.03
+    }
+  ]
+}
